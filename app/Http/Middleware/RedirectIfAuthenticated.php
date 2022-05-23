@@ -23,6 +23,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                //Constant value can be updated
                 return redirect(RouteServiceProvider::HOME);
             }
         }
