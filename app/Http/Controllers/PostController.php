@@ -10,7 +10,10 @@ class PostController extends Controller
     public function index() {
         //$posts = Post::get(); //return collection, all of it
 
-        $posts = Post::paginate(20);//return pagination 2 per page, not all from db, but 2
+        //return pagination xx per page, not all from db, but 2
+        // with() is used for eager loading, it loads relationships together with collection of posts
+        $posts = Post::with(['user', 'likes'])->paginate(20);
+        
         return view('posts.index', [
             'posts' => $posts
         ]);

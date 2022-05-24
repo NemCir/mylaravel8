@@ -44,22 +44,6 @@
                         <a href="{{ route('register') }}" class="p-6">Register</a>
                     </li>
                 @endguest
-                {{-- USING @AUTH AND @GUEST INSTEAD OF THIS
-                    @if (auth()->user())
-                    <li>
-                        <a href="" class="p-6">Nemanja Cirovic</a>
-                    </li>
-                    <li>
-                        <a href="" class="p-6">Logout</a>
-                    </li>
-                @else
-                    <li>
-                        <a href="" class="p-6">Login</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('register') }}" class="p-6">Register</a>
-                    </li>
-                @endif                 --}}
             </ul>
         </nav>
         @yield('content')
