@@ -12,10 +12,17 @@ class PostController extends Controller
 
         //return pagination xx per page, not all from db, but 2
         // with() is used for eager loading, it loads relationships together with collection of posts
-        $posts = Post::with(['user', 'likes'])->paginate(20);
-        
+        //$posts = Post::orderBy('created_at', 'desc')->with(['user', 'likes'])->paginate(20);
+        $posts = Post::latest()->with(['user', 'likes'])->paginate(20);
+
         return view('posts.index', [
             'posts' => $posts
+        ]);
+    }
+
+    public function show(Post $post) {
+        return view('posts.show', [
+            'post' => $post
         ]);
     }
 
@@ -28,6 +35,15 @@ class PostController extends Controller
             'body' => $request->body
         ]);*/
         auth()->user()->posts()->create($request->only('body'));
+
+        return back();
+    }
+
+    public function destroy(Post $post) {
+
+        $this->authorize('delete', $post); //delete is method name in PostPolicy
+
+        $post->delete();
 
         return back();
     }

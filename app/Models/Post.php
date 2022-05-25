@@ -23,6 +23,11 @@ class Post extends Model
         return $this->likes->contains('user_id', $user->id); //Contains is collection method "WHERE user_id=..."
     }
 
+    // Using PostPolicy instead
+    // public function ownedBy(User $user) {
+    //     return $user->id === $this->user_id; //Compare user sent with acctual user of post
+    // }
+
     public function user() {
         return $this->belongsTo(User::class);
     }
