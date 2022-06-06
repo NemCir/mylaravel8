@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth'])->only(['store', 'destroy']);
+        //Only auth users can add/delete posts, all other can see them
+    }
+
     public function index() {
         //$posts = Post::get(); //return collection, all of it
 

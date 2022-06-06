@@ -3,6 +3,10 @@
 @section('content')
     <div class="flex justify-center">
         <div class="w-8 bg-white p-6 rounded-lg">
+            @guest
+                -- Sign-in to post --<br/>
+            @endguest
+            @auth
             <form action="{{ route('posts') }}" method="post" class="mb-4"> 
                 @csrf
                 <div class="mb-4">
@@ -23,7 +27,7 @@
                     </button>
                 </div>
             </form>
-
+            @endauth
             @if ($posts->count())
                 @foreach ($posts as $post)
                     <x-post :post="$post" />
